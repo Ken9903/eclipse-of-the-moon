@@ -23,16 +23,19 @@ public class Catch_Gun : MonoBehaviour
             return;
         }
 
-        if (other.gameObject.name == "MagicPrepare_R")
+        if (other.gameObject.name != "MagicPrepare_R")
         {
-            if (controllerR.inputDevice.TryGetFeatureValue(CommonUsages.grip, out float gripTargetR))
-            {
-                if (gripTargetR > 0.9)
-                {
-                    Instantiate(gun, gun_init_pointR);
-                    isequiped = true;
-                }
-            }
+            return;
         }
+
+        if (controllerR.inputDevice.TryGetFeatureValue(CommonUsages.grip, out float gripTargetR))
+        {
+            if (gripTargetR > 0.9)
+            {
+                Instantiate(gun, gun_init_pointR);
+                isequiped = true;
+            }
+        }      
     }
 }
+
