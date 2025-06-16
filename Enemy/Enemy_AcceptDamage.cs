@@ -57,7 +57,7 @@ public class Enemy_AcceptDamage : MonoBehaviour
     }
 
 
-    public void Accept_Damage_Oneshot(int damage) // ¹Ì¼¼Á¶Á¤ ÇÊ¿äÇÒ¶§¸¦ À§ÇØ ºÐ¸®ÇÔ ¾ÆÁ÷Àº ºÐ¸®ÀÇ ÀÇ¹Ì°¡ ¾øÀ½.
+    public void Accept_Damage_Oneshot(int damage) 
     {
         StartCoroutine(sturnOnOff());
         ShowDamageUi(damage);
@@ -67,7 +67,7 @@ public class Enemy_AcceptDamage : MonoBehaviour
                 anim.SetTrigger("Take Damage");
                 enemyAi.sightRange = 100;
 
-                StartCoroutine(AffectTriggerOnOff()); //´Ù¸¥ ¸÷±îÁö ²ø¾îµéÀÌ´Â ±â´É
+                StartCoroutine(AffectTriggerOnOff());
             }
         
             
@@ -84,7 +84,7 @@ public class Enemy_AcceptDamage : MonoBehaviour
                 anim.SetTrigger("Take Damage");
                 enemyAi.sightRange = 100;
 
-                StartCoroutine(AffectTriggerOnOff()); //´Ù¸¥ ¸÷±îÁö ²ø¾îµéÀÌ´Â ±â´É
+                StartCoroutine(AffectTriggerOnOff()); //ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½
             }
      
 
@@ -101,7 +101,7 @@ public class Enemy_AcceptDamage : MonoBehaviour
                 anim.SetTrigger("Take Damage");
                 enemyAi.sightRange = 100;
 
-                StartCoroutine(AffectTriggerOnOff()); //´Ù¸¥ ¸÷±îÁö ²ø¾îµéÀÌ´Â ±â´É
+                StartCoroutine(AffectTriggerOnOff()); //ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½
             }
         
 
@@ -118,12 +118,12 @@ public class Enemy_AcceptDamage : MonoBehaviour
 
     private void Check_HP_Zero()
     {
-        if(enemyStatus.hp <= 0 && dead == false) // dead´Â ÇÑ¹ø¸¸ ½ÇÇà µÇ°Ô ÇÏµµ·Ï ÇÏ´Â ÀåÄ¡. °æÇèÄ¡ Áßº¹ È¹µæ ¹æÁö.
+        if(enemyStatus.hp <= 0 && dead == false) // deadï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç°ï¿½ ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½Ä¡. ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ßºï¿½ È¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
         {
             dead = true;
-            GiveExpToPlayer(); // ÇÃ·¹ÀÌ¾î¿¡°Ô °æÇèÄ¡ ºÎ¿©
+            GiveExpToPlayer(); // ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½Î¿ï¿½
 
-            // »ç¸ÁÀÌº¥Æ®
+            // ï¿½ï¿½ï¿½ï¿½Ìºï¿½Æ®
             this.GetComponent<Collider>().enabled = false;
             this.GetComponent<NavMeshAgent>().isStopped = true;
             this.GetComponent<NavMeshAgent>().velocity = Vector3.zero;

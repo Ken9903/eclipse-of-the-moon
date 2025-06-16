@@ -44,31 +44,26 @@ public class EnemyAi : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
-            //Check for sight and attack range
-            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-            if (!playerInSightRange && !playerInAttackRange && agent.enabled == true)
-            {
-                idle();
-                //Patroling();
-                //« ø‰Ω√ ∆–∆Æ∑—∏µ
-            }
-            if (playerInSightRange && !playerInAttackRange && agent.enabled == true)
-            {
-                ChasePlayer();
-            }
-            if (playerInAttackRange && playerInSightRange && agent.enabled == true)
-            {
-                AttackPlayer();
-
-
-            }
+        if (!playerInSightRange && !playerInAttackRange && agent.enabled == true)
+        {
+            Idle();
         }
+        if (playerInSightRange && !playerInAttackRange && agent.enabled == true)
+        {
+            ChasePlayer();
+        }
+        if (playerInSightRange && playerInAttackRange && agent.enabled == true)
+        {
+            AttackPlayer();
+        }
+    }
        
     
     private void Patroling()
@@ -85,15 +80,14 @@ public class EnemyAi : MonoBehaviour
             agent.SetDestination(walkPoint);
         }
 
-        Vector3 distanceToWalkPoint = transform.position - walkPoint; //∏Ò¿˚¡ˆ±Ó¡ˆ¿« ∫§≈Õ ∞ËªÍ
+        Vector3 distanceToWalkPoint = transform.position - walkPoint; 
 
-        //Walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f) //πÈ≈Õ¿« ±Ê¿Ã∞° 1∫∏¥Ÿ ¿€¿ª ∂ß
+        if (distanceToWalkPoint.magnitude < 1f) 
         {
             walkPointSet = false;
         }
     }
-    private void idle()
+    private void Idle()
     {
         if(anim.GetCurrentAnimatorStateInfo(0).IsName("idle"))
         {
@@ -108,13 +102,12 @@ public class EnemyAi : MonoBehaviour
     }
     private void SearchWalkPoint()
     {
-        //Calculate random point in range «ˆ¿Á¥¬ ¿Ãµø π¸¿ß ¡ˆ¡§¿Ã æ»µ«¿÷¿Ω. ∆–∆Æ∑—¿Ã ¿⁄¿Ø∫–πÊ«‘.
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if (Physics.Raycast(walkPoint, -transform.up, 1f, whatIsGround))//∞¯¡ﬂ¿Ã æ∆¥— ∞ÊøÏ ∞Ê∑Œ¡ˆ¡§ «„∞°.
+        if (Physics.Raycast(walkPoint, -transform.up, 1f, whatIsGround))
         {
             walkPointSet = true;
         }
@@ -130,7 +123,7 @@ public class EnemyAi : MonoBehaviour
         transform.LookAt(look_At_player);
     }
 
-    private void AttackPlayer() //∞Ê¡˜¿Ã≥™ ¡◊¿ª ∂ß ∏∑æ∆æﬂ«‘
+    private void AttackPlayer() 
     {
         Vector3 look_At_player = new Vector3(player.position.x, this.transform.position.y, player.position.z);
         transform.LookAt(look_At_player);
@@ -138,11 +131,11 @@ public class EnemyAi : MonoBehaviour
         if (!alreadyAttacked && enemy_AcceptDamage.dead == false && enemy_AcceptDamage.sturned == false) 
         {
             ///Attack code here
-            if(enemy_attack_type == "direct") //±Ÿ∞≈∏Æ
+            if(enemy_attack_type == "direct") 
             {
                 enemy_Attack.direct_attack(enemyStatus.attack_point);
             }
-            else if(enemy_attack_type == "far") //ø¯∞≈∏Æ
+            else if(enemy_attack_type == "far") 
             {
                 enemy_Attack.far_attack(enemyStatus.attack_point);
             }
@@ -150,14 +143,14 @@ public class EnemyAi : MonoBehaviour
             ///End of attack code
             anim.SetTrigger("Attack");
 
-            Invoke("Stop_Destination", 0.5f); //¡ª¥ı ±Ìº˜«— ∞˜ ±Ó¡ˆøÕº≠ ∏ÿ√ﬂ±‚
+            Invoke("Stop_Destination", 0.5f); //ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÕºÔøΩ ÔøΩÔøΩÔøΩﬂ±ÔøΩ
             alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks); //ƒ≈∏¿” º≥¡§
+            Invoke(nameof(ResetAttack), timeBetweenAttacks); //ÔøΩÔøΩ≈∏ÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ
         }
     }
    private void Stop_Destination()
     {
-        if(agent.enabled == true) // if¡∂∞«¿∫ øπø‹√≥∏Æ addforce∏¶ ¿ß«ÿ ≤®πˆ∏Æ∞Ì Ω««‡µ«¥¬∞… πÊ¡ˆ
+        if(agent.enabled == true) // ifÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ√≥ÔøΩÔøΩ addforceÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ«¥¬∞ÔøΩ ÔøΩÔøΩÔøΩÔøΩ
         {
             agent.velocity = Vector3.zero;
             agent.isStopped = true;
@@ -167,7 +160,7 @@ public class EnemyAi : MonoBehaviour
         }
       
     }
-    private void ResetAttack() //∞¯∞› ƒ≈∏¿”
+    private void ResetAttack() //ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩ≈∏ÔøΩÔøΩ
     {
         alreadyAttacked = false;
     }

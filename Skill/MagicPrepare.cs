@@ -53,11 +53,11 @@ public class MagicPrepare : MonoBehaviour
                     {
                         return;
                     }
-                    if (triggerTargetL < 0.9 || triggerTargetR < 0.9) //양쪽 컨트롤러 모두 Grip 상태여야 합니다.
+                    if (triggerTargetL < 0.9 || triggerTargetR < 0.9) //양쪽 컨트롤러 모두 Grip 상태여야 함
                     {
                         return;
                     }
-                    
+
                     if (use == false && GameObject.Find("TriggerPoint") != null) 
                     {                           
                         use = true;
