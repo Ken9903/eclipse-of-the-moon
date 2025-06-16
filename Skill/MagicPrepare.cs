@@ -21,14 +21,14 @@ public class MagicPrepare : MonoBehaviour
 
 
     public GameObject[] passiveBullet= new GameObject[3];
-    public int passive1Level = 1;  // 0ÀÌ¸é ºñÈ°¼ºÈ­.
-    public int passive2Level = 1;  // 0ÀÌ¸é ºñÈ°¼ºÈ­.
-    public int passive3Level = 1;  // 0ÀÌ¸é ºñÈ°¼ºÈ­.
+    public int passive1Level = 1;  // 0ï¿½Ì¸ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­.
+    public int passive2Level = 1;  // 0ï¿½Ì¸ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­.
+    public int passive3Level = 1;  // 0ï¿½Ì¸ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­.
 
     public bool use = false;
 
 
-    public void DestroyAll(string destroy_except_name) //¸Å°³º¯¼ö from : mag inform
+    public void DestroyAll(string destroy_except_name) //ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ from : mag inform
     {
         foreach (GameObject item in tempMagic)
         {
@@ -45,31 +45,26 @@ public class MagicPrepare : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        
-
             if (controllerL.inputDevice.TryGetFeatureValue(CommonUsages.grip, out float triggerTargetL))
             {
                 if (controllerR.inputDevice.TryGetFeatureValue(CommonUsages.grip, out float triggerTargetR))
                 {
-                    if (other.gameObject.name == "MagicPrepare_R")
+                    if (other.gameObject.name != "MagicPrepare_R")
                     {
-                        if (triggerTargetL >= 0.9 && triggerTargetR >= 0.9)
-                        {
-                        if (use == false && GameObject.Find("TriggerPoint") != null) //triggerPoint´Â Â÷ÈÄ ÃÑ¾øÀÌ ¾µ¼öÀÖ´Â ¸¶¹ý³ª¿À¸é ÀüÈ¯
-                        {
-                            
-                            use = true;
-                            Debug.Log("Magic!");
-                            tempMagic[0] = Instantiate(magic[0], magicPos_1);
-                            //tempMagic1.GetComponent<MagicCubeManager>().magic = magic[0];
-                            tempMagic[1] = Instantiate(magic[1], magicPos_2);
-                            //tempMagic2.GetComponent<MagicCubeManager>().magic = magic[1];
-                            tempMagic[2] = Instantiate(magic[2], magicPos_3);
-                            //tempMagic3.GetComponent<MagicCubeManager>().magic = magic[2];
-
-                        }
-                        }
+                        return;
                     }
+                    if (triggerTargetL < 0.9 || triggerTargetR < 0.9) //ì–‘ìª½ ì»¨íŠ¸ë¡¤ëŸ¬ ëª¨ë‘ Grip ìƒíƒœì—¬ì•¼ í•©ë‹ˆë‹¤.
+                    {
+                        return;
+                    }
+                    
+                    if (use == false && GameObject.Find("TriggerPoint") != null) 
+                    {                           
+                        use = true;
+                        tempMagic[0] = Instantiate(magic[0], magicPos_1);
+                        tempMagic[1] = Instantiate(magic[1], magicPos_2);
+                        tempMagic[2] = Instantiate(magic[2], magicPos_3);
+                    }                             
                 }
             }
         

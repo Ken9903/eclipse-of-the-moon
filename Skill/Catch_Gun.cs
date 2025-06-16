@@ -18,21 +18,21 @@ public class Catch_Gun : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(isequiped == false)
+        if(isequiped == true)
         {
-            if (other.gameObject.name == "MagicPrepare_R")
+            return;
+        }
+
+        if (other.gameObject.name == "MagicPrepare_R")
+        {
+            if (controllerR.inputDevice.TryGetFeatureValue(CommonUsages.grip, out float gripTargetR))
             {
-                if (controllerR.inputDevice.TryGetFeatureValue(CommonUsages.grip, out float gripTargetR))
+                if (gripTargetR > 0.9)
                 {
-                    if (gripTargetR > 0.9)
-                    {
-                        Instantiate(gun, gun_init_pointR);
-                        isequiped = true;
-                    }
+                    Instantiate(gun, gun_init_pointR);
+                    isequiped = true;
                 }
             }
         }
-        
-       
     }
 }
