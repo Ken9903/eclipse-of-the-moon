@@ -5,7 +5,7 @@
 
 ### 🖊️ 요약
 
-- Unity의 XR Interaction Toolkit으로 제작된 VR FPS RPG **Eclipse of the Moon**
+- Unity의 XR Interaction Toolkit으로 제작된 VR FPS RPG
 - 플레이어의 VR경험을 강화시키기 위해 액션 요소를 적극적으로 넣음.
 - 현재 [Steam](https://store.steampowered.com/app/2134280/Eclipse_of_the_Moon/?beta=0)에서 구매 가능
 - 총 8~12시간의 플레이 타임
