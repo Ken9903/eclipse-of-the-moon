@@ -1,6 +1,6 @@
 # VR FPS RPG - Eclipse of the Moon 기획, 개발
 
-<img src="https://github.com/user-attachments/assets/58be4c61-ea3d-412a-94e2-c726edbbb6d3" alt="Eclipse of the Moon" width="600"/>
+<img src= "https://github.com/user-attachments/assets/c576349c-9a15-46d5-a0b5-ea41557a3494" alt="Eclipse of the Moon" width="600"/>
 
 
 ### 🖊️ 요약
